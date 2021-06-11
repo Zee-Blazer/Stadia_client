@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+  <head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<title>Tables - DWAdmin</title>
+
+	<!-- Bootstrap CSS-->
+	<link rel="stylesheet" href="assets/vendors/bootstrap/css/bootstrap.css">
+	<!-- Style CSS (White)-->
+	<link rel="stylesheet" href="assets/css/White.css">
+	<!-- Style CSS (Dark)-->
+	<link rel="stylesheet" href="assets/css/Dark.css">
+	<!-- FontAwesome CSS-->
+	<link rel="stylesheet" href="assets/vendors/fontawesome/css/all.css">
+	<!-- Icon LineAwesome CSS-->
+	<link rel="stylesheet" href="assets/vendors/lineawesome/css/line-awesome.min.css">
+
+</head>
+<body>
+  
+  <!--Topbar -->
+  <div class="topbar transition">
+	<div class="bars">
+		<button type="button" class="btn transition" id="sidebar-toggle">
+			<i class="las la-bars"></i>
+		</button>
+	</div>
+	<div class="menu">
+	
+		<ul>
+
+			<li>
+				<div class="theme-switch-wrapper">
+						<label class="theme-switch" for="checkbox">
+							<input type="checkbox" id="checkbox"  title="Dark Or White"/>
+							<div class="slider round"></div>
+					  </label>
+					</div>
+				</li>
+
+				<li>
+					<a href="notifications.html" class="transition">
+						<i class="las la-bell"></i>
+						<span class="badge badge-danger notif">5</span>
+					</a>
+				</li>
+
+				<li>
+					<div class="dropdown">
+						<div class="dropdown-toggle" id="dropdownProfile" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false">
+							<img src="assets/images/avatar/avatar-2.png" alt="Profile">
+						</div>
+						<div class="dropdown-menu" aria-labelledby="dropdownProfile">
+							
+							<a class="dropdown-item" href="profile.html">
+								<i class="las la-user mr-2"></i> My Profile
+							</a>
+	
+							<a class="dropdown-item" href="receipt.html">
+								<i class="las la-list-alt mr-2"></i> Activity Log
+							</a>
+						 
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="signin.html">
+								<i class="las la-sign-out-alt mr-2"></i> Sign Out
+							</a>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+<!--Topbar -->
+<div class="topbar transition">
+	<div class="bars">
+		<button type="button" class="btn transition" id="sidebar-toggle">
+			<i class="las la-bars"></i>
+		</button>
+	</div>
+	<div class="menu">
+	
+		<ul>
+
+			 <li>
+				<div class="theme-switch-wrapper">
+						<label class="theme-switch" for="checkbox">
+							<input type="checkbox" id="checkbox"  title="Dark Or White"/>
+							<div class="slider round"></div>
+					  </label>
+					</div>
+				</li>
+
+				<li>
+					<a href="notifications.html" class="transition">
+						<i class="las la-bell"></i>
+						<span class="badge badge-danger notif">0</span>
+					</a>
+				</li>
+
+				<li>
+					<div class="dropdown">
+						<div class="dropdown-toggle" id="dropdownProfile" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false">
+							<img src="assets/images/avatar/avatar-2.png" alt="Profile">
+						</div>
+						<div class="dropdown-menu" aria-labelledby="dropdownProfile">
+							
+							<a class="dropdown-item" href="profile.html">
+								<i class="las la-user mr-2"></i> My Profile
+							</a>
+	
+							<a class="dropdown-item" href="activity-log.html">
+								<i class="las la-list-alt mr-2"></i> Activity Log
+							</a>
+						 
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="signin.html">
+								<i class="las la-sign-out-alt mr-2"></i> Sign Out
+							</a>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<!--Sidebar-->
+	<div class="sidebar transition overlay-scrollbars">
+		<a href="index.html">
+            <div class="logo">
+                <h2 style="font-weight: 700;" class="mb-0">S<span style="font-weight: 500;">TADIA</span></h2>
+            </div>
+        </a>
+
+		<div class="sidebar-items">
+			<div class="accordion" id="sidebar-items">
+				<ul>
+
+					<hr>
+					<li>
+						<a href="profile.html" class="items">
+							<div class="profile__settings">
+								<img src="assets/images/avatar/avatar-2.png" alt="Profile">
+								<p>USERNAME</p>
+							</div>
+						</a>
+					</li><hr>
+
+					
+					<li>
+						<a href="index.html" class="items">
+							<i class="fas fa-search"></i>
+							<span>Search</span>
+						</a>
+					</li>
+					
+
+					<li>
+						<a href="blank_page.html" class="items">
+							<i class="fas fa-ticket-alt"></i>
+							<span>Tickets / Book Now</span>
+						</a>
+					</li>
+
+					<li>
+						<a href="receipt.html" class="items">
+							<i class="fas fa-receipt"></i>
+							<span>Receipts</span>
+						</a>
+					</li>
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="sidebar-overlay"></div>
+
+
+
+
+
+	<!--Content Start-->
+	<div class="content transition">
+		<div class="container-fluid dashboard">
+			<h3>Receipts</h3>
+			<p>below are your last two receipts</p>
+		
+			<div class="row">
+        
+				<!--Start table-->
+					<div class="col-12 col-md-6">
+						<div class="card">
+						  <div class="card-content">
+							<div class="card-body">
+							  <!-- Table with outer spacing -->
+							  <div class="table-responsive">
+								<table class="table">
+									<thead>
+										<tr>
+										<th style="color: black;">NAME</th>
+										<th style="color: black;">SIT</th>
+										<th style="color: black;">TICKET-ID</th>
+										<th style="color: black;">DATE</th>
+										</tr>
+									</thead>
+
+								  <tbody>
+									<tr>
+									  <td class="text-bold-500">Michael Right</td>
+									  <td>First row</td>
+									  <td class="text-bold-500">AA154</td>
+									  <td class="text-bold-500">1st June, 2021</td>
+									  </tr>
+								  </tbody>
+								</table>
+							  </div>
+							</div>
+						  </div>
+						</div>
+					  </div>
+			
+					  <div class="col-12 col-md-6">
+						<div class="card">
+						  <div class="card-content">
+			
+							<!-- Table with no outer spacing -->
+							<div class="table-responsive">
+							  <table class="table mb-0">
+
+								<thead>
+									<tr>
+									<th style="color: black;">NAME</th>
+									<th style="color: black;">SIT</th>
+									<th style="color: black;">TICKET-ID</th>
+									<th style="color: black;">DATE</th>
+									</tr>
+								</thead>
+
+								<tbody>
+									<tr>
+										<td class="text-bold-500">Michael Right</td>
+										<td>Middle row</td>
+										<td class="text-bold-500">E5F31</td>
+										<td class="text-bold-500">3rd April, 2021 <br><br></td>
+									</tr>
+								</tbody>
+							  </table>
+							</div>
+						  </div>
+						</div>
+					  </div>
+					</div>
+						  
+			
+					<div class="row">
+			
+					<div class="col-12">
+						<div class="card">
+						  <div class="card-header">
+							<h4 class="card-title">History</h4>
+						  </div>
+						  <div class="card-content">
+							<div class="card-body">
+							  <p class="card-text">Find all your past transactions in the table below</p>
+							</div>
+							<!-- table strip dark -->
+							<div class="table-responsive">
+							  <table class="table table-striped table-dark mb-0">
+								<thead>
+								  <tr>
+									<th>NAME</th>
+									<th>SIT</th>
+									<th>TICKET-ID</th>
+									<th>DATE</th>
+								  </tr>
+
+
+								</thead>
+								<tbody>
+								  <tr>
+									<td class="text-bold-500">Michael Right</td>
+									<td>Front row</td>
+									<td class="text-bold-500">AA154</td>
+									<td class="text-bold-500">1st June, 2021</td>
+								  </tr>
+								  <tr>
+									<td class="text-bold-500">Michael Right</td>
+									<td>Middle row</td>
+									<td class="text-bold-500">E5F31</td>
+									<td class="text-bold-500">3rd April, 2021</td>
+								  </tr>
+								  <tr>
+									<td class="text-bold-500">Amaka Ekene</td>
+									<td>Last row</td>
+									<td class="text-bold-500">KK6J8</td>
+									<td class="text-bold-500">10th february, 2021</td>
+								  </tr>
+								  <tr>
+									<td class="text-bold-500">Michael Right</td>
+									<td>Middle row</td>
+									<td class="text-bold-500">QA235</td>
+									<td class="text-bold-500">20th January, 2021</td>
+								  </tr>
+								  <tr>
+									<td class="text-bold-500">Tobi Ayomide</td>
+									<td>Front row</td>
+									<td class="text-bold-500">JUH56</td>
+									<td class="text-bold-500">15th January, 2021</td>
+								  </tr>
+								</tbody>
+							  </table>
+							</div>
+						  </div>
+						</div>
+					  </div>
+					</div>
+				   <!--End table-->
+		
+		</div>
+
+	</div>
+
+	<!-- Footer -->
+	<div class="footer transition">
+		<hr class="line">
+		<p>
+			&copy; 2021 All Right Reserved by <a href="#" target="_blank">THEDEVS</a>
+		</p>
+	</div>
+
+	<!-- Loader -->
+	<div class="loader">
+		<div class="spinner-border text-light" role="status">
+			<span class="sr-only">Loading...</span>
+		</div>
+	</div>
+	
+	<div class="loader-overlay"></div>
+
+	<!-- Library Javascipt-->
+	<script src="assets/vendors/bootstrap/js/jquery.min.js"></script>
+	<script src="assets/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="assets/vendors/bootstrap/js/popper.min.js"></script>
+	<script src="assets/js/script.js"></script>
+ </body>
+</html>
