@@ -1,0 +1,52 @@
+{% load static %}
+
+<!--Sidebar-->
+<div class="sidebar transition overlay-scrollbars">
+	<a href="index.html">
+		<div class="logo">
+			<h2 style="font-weight: 700;" class="mb-0">Stadia<span style="font-weight: 500;">Client</span></h2>
+		</div>
+	</a>
+
+	<div class="sidebar-items">
+		<div class="accordion" id="sidebar-items">
+			<ul>
+				<hr>
+				<li>
+					<a href="profile.html" class="items">
+						<div class="profile__settings">
+							<img src="{{ user_profile.image.url }}" alt="Profile">
+							<p>USERNAME</p>
+						</div>
+					</a>
+				</li>
+				<hr>
+
+				<li>
+					<a href="search.html" class="items">
+						<i class="fas fa-search"></i>
+						<span>Search</span>
+					</a>
+				</li>
+
+
+				<li>
+					<a href="Plugins.html" class="items">
+						<i class="fas fa-ticket-alt"></i>
+						<span>Tickets / Book Now</span>
+					</a>
+				</li>
+
+				<li>
+					<a href="receipt.html" class="items">
+						<i class="fas fa-receipt"></i>
+						<span>Receipts</span>
+					</a>
+				</li>
+
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="sidebar-overlay"></div>

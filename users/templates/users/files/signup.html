@@ -1,0 +1,21 @@
+{% extends 'users/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block form_head %}
+    <h3 class="mb-5">SIGN UP</h3>
+{% endblock %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        {{ form.non_field_errors}}
+        <div class="form-group">
+            <button type="submit" class="btn btn-linear-primary btn-rounded">Create an account</button>
+        </div>
+        <p>Already a member? <a href="{% url 'users:login' %}" id="create_account">Log into your account</a></p>
+    </form>
+{% endblock %}
