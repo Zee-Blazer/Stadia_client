@@ -1,10 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'dashboard/base.html' %}
+
+{% block title %}Ticket{% endblock %}
+
+{% block section %}Ticket{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title" style="text-align: center;">Ticket for "{{ ticket.event.name }}"</h5>
+                    <h6 class="card-subtitle mb-2 text-muted" style="text-align: center;">
+                        This ticket is valid till "{{ date }}", "{{ time }}"
+                    </h6>
+                    <div class="row">
+                        <div class="col-md-4 mt-10"></div>
+                        <div class="col-md-4">
+                            <br><img src="{{ ticket.attendee.image.url }}" class="rounded-circle img-fluid" /><br>
+                        </div>
+                        <div class="col-md-4"></div>
+                    </div>
+                    <hr><br><img class="card-img" src="{{ ticket.event.dis_image.url }}" class="card-img-top"><br><hr>
+                    <br><p class="card-text">{{ ticket.event.description }}</p><br><hr>
+                    <div class="row">
+                        <div class="col-md-6 lead font-weight-bold mr-auto">
+                            <p>{{ ticket.book_seat }} seat worth <span class="badge badge-primary">${{ ticket.event.price }}</span></p>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-success offset-5">
+                                <a href="#" class="card-link" style="color: white; text-decoration: none;">Print Ticket</a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+{% endblock %}

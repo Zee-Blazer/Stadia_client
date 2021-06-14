@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import braintree
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -33,6 +34,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'dashboard.apps.DashboardConfig',
+    'payment.apps.PaymentConfig',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -143,3 +145,16 @@ LOGIN_REDIRECT_URL = 'user_dashboard:dashboard'
 # Crispy form settings
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# Braintree settings
+
+BRAINTREE_MERCHANT_ID = 'nxsdd35s7jyss2wb'
+BRAINTREE_PUBLIC_KEY = 'g5hpc7ty9wv7y7ym'
+BRAINTREE_PRIVATE_KEY = '1014264d960e3d1e0a5935a977e6ead2'
+
+BRAINTREE_CONF = braintree.Configuration(
+    braintree.Environment.Sandbox,
+    BRAINTREE_MERCHANT_ID,
+    BRAINTREE_PUBLIC_KEY,
+    BRAINTREE_PRIVATE_KEY
+)

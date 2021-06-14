@@ -1,10 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'dashboard/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Add Event{% endblock %}
+
+{% block section %}{{ event.name }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <img src="{{ event.dis_image.url }}" style="width: 80%; margin: 15px 10% 0; height: 350px;">
+        </div>
+
+        <div class="col-12 col-md-6">
+            <h2>Attend the "{{ event.name }}" event!</h2><hr><br>
+            <h4>Description:</h4>
+            <p>{{ event.description }}</p><hr><br>
+            <div class="row">
+                <div class="col-md-3">
+                    <h5>Capacity:</h5>
+                    <p class="text-warning">{{ event.capacity }}</p>
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-3">
+                    <h5>Attendance:</h5>
+                    <p class="text-danger">{{ event.attendance }}</p>
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-3">
+                    <h5>Price:</h5>
+                    <p class="text-primary">${{ event.price }}</p>
+                </div>
+                <div class="col-md-1"></div>
+            </div><hr><br>
+            <div class="row">
+                <div class="col-md-4">
+                    <p style="text-align: center;">
+                        Event will be holding at<br>
+                        <b class="text-info">{{ time }}</b><br>
+                        on<br>
+                        <b class="text-success">{{ date }}</b>
+                    </p>
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-6">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-body">
+                            <div class="form-group">
+                                {{ form.book_seat|as_crispy_field }}
+                            </div>
+                            <div class="col-sm-12 d-flex justify-content-center">
+                                <button type="submit" class="btn btn-primary">Book Seat</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+{% endblock %}

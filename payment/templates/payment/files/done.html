@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'dashboard/base.html' %}
+
+{% block title %}Payment successful{% endblock %}
+
+{% block section %}Payment successful{% endblock %}
+
+{% block content %}
+    <p>
+        Your payment has been processed successfully.
+        <a href="{% url 'user_dashboard:dashboard' %}">Head back to dashboard</a>
+    </p>
+{% endblock %}

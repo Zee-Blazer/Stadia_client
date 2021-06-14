@@ -4,7 +4,6 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 class UserForm(UserCreationForm):
-    # email = forms.EmailField()
     GENDER_CHOICES = (
         ('F', 'Female',),
         ('M', 'Male',),

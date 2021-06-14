@@ -33,9 +33,19 @@
 		<div class="container-fluid dashboard">
 			<h3>{% block section %}{% endblock %}</h3>
 
-			<div class="row">
-				{% block content %}{% endblock %}
-			</div>
+			{% if messages %}
+			  {% for message in messages %}
+				<div class="alert alert-{% if message.tags != 'error' %}{{ message.tags }}{% else %}{{ 'danger' }}{% endif %} alert-dismissible fade show">
+					<strong>{{ message.tags }}!</strong>
+					{{ message }}
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+			  {% endfor %}
+			{% endif %}
+
+			{% block content %}{% endblock %}
 
 		</div>
 
@@ -50,5 +60,7 @@
 	<script src="{% static 'assets/vendors/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 	<script src="{% static 'assets/vendors/bootstrap/js/popper.min.js' %}"></script>
 	<script src="{% static 'assets/js/script.js' %}"></script>
+	{% block brain_tree_script %}{% endblock %}
+	{% block write_script %}{% endblock %}
  </body>
 </html>
