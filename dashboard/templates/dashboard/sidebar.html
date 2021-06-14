@@ -1,0 +1,61 @@
+{% load static %}
+
+<!--Sidebar-->
+<div class="sidebar transition overlay-scrollbars">
+	<a href="{% url 'index' %}">
+		<div class="logo">
+			<h2 style="font-weight: 700;" class="mb-0">Stadia<span style="font-weight: 500;">Client</span></h2>
+		</div>
+	</a>
+
+	<div class="sidebar-items">
+		<div class="accordion" id="sidebar-items">
+			<ul>
+				<hr>
+				<li>
+					<a href="{% url 'user_dashboard:dashboard' %}" class="items">
+						<div class="profile__settings">
+							<img src="{{ user_profile.image.url }}" alt="Profile">
+							<p>{{ user.username }}</p>
+						</div>
+					</a>
+				</li>
+				<hr>
+
+				<li>
+					<a href="{% url 'user_dashboard:search' %}" class="items">
+						<i class="fas fa-search"></i>
+						<span>Search</span>
+					</a>
+				</li>
+
+
+				<li>
+					<a href="{% url 'user_dashboard:all_events' %}" class="items">
+						<i class="fas fa-ticket-alt"></i>
+						<span>All Events</span>
+					</a>
+				</li>
+
+				<li>
+					<a href="{% url 'user_dashboard:programs' %}" class="items">
+						<i class="fas fa-receipt"></i>
+						<span>Programs</span>
+					</a>
+				</li>
+
+				{% if user_profile.is_agent %}
+					<li>
+						<a href="{% url 'user_dashboard:create_event' %}" class="items">
+							<i class="fa fa-plus" aria-hidden="true"></i>
+							<span>Create an Event</span>
+						</a>
+					</li>
+				{% endif %}
+
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="sidebar-overlay"></div>

@@ -1,0 +1,12 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}Payment Canceled{% endblock %}
+
+{% block section %}Payment Canceled{% endblock %}
+
+{% block content %}
+    <p>
+        There was a problem processing your payment.
+        <a href="{% url 'user_dashboard:dashboard' %}">Head back to dashboard</a>
+    </p>
+{% endblock %}

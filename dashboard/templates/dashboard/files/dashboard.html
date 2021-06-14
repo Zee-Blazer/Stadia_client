@@ -1,0 +1,59 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block section %}Dashboard{% endblock %}
+
+{% block content %}
+    <hr><h2 align="center">Events and Shows</h2><hr><br>
+    {% if events %}
+        {% for event in events %}
+            <div class="row">
+                <div class="col-xl-4 col-md-6">
+                    <div class="card">
+                        <img class="card-img card-img-top" src="{{ event.dis_image.url }}">
+                        <div class="card-body">
+                        <h5 class="card-title">{{ event.name }}</h5>
+                        <p class="card-text">{{ event.description }}</p>
+                        <a href="{% url 'user_dashboard:add_event' event.name %}" class="btn btn-success">Attend Event</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p class="font-weight-bold" align="center">Sorry, there are no events available at the moment.</p>
+    {% endif %}
+
+    <hr><h2 align="center">Booked Events</h2><hr><br>
+    {% if tickets %}
+        <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Event Name</th>
+                  <th>Attendees</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Ticket</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for ticket in tickets %}
+                <tr>
+                  <td class="text-bold-500">{{ ticket.event.name }}</td>
+                  <td>{{ ticket.event.attendance }}</td>
+                  <td>{{ ticket.event.date.date }}</td>
+                  <td>{{ ticket.event.date.time }}</td>
+                  <td><button class="btn btn-outline-success"><a href="{% url 'user_dashboard:ticket' ticket.id %}">View Ticket</a></button></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p class="font-weight-bold" align="center">Your are not currently registered for any event
+            <a href="#">View all events available now</a>
+        </p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'dashboard/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Create Event{% endblock %}
+
+{% block section %}Create Event{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-3 col-12"></div>
+        <div class="col-md-6 col-12">
+            <div class="card">
+                <div class="card-header">
+                <h4 class="card-title">Create an Event</h4>
+                </div>
+                <div class="card-content">
+                <div class="card-body">
+                    <form class="form form-horizontal">
+                    <div class="form-body">
+                        {{ form|crispy }}
+                    </div>
+                    <div class="col-12 d-flex justify-content-end ">
+                        <button type="submit" class="btn btn-primary mr-1 mb-1">Submit</button>
+                    </div>
+                  </form>
+                </div>
+               </div>
+            </div>
+      </div>
+        <div class="col-md-3 col-12"></div>
+    </div>
+{% endblock %}
