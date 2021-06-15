@@ -9,7 +9,7 @@ def gender_image_selector(gender):
     if gender == 'M':
         image = 'images/avatar-male.png'
     else:
-        image = 'image/avatar-female.png'
+        image = 'images/avatar-female.png'
 
     return image
 
