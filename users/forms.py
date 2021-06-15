@@ -11,12 +11,6 @@ class UserForm(UserCreationForm):
     gender = forms.ChoiceField(choices=GENDER_CHOICES)
     agent = forms.BooleanField(required=False)
 
-    def clean(self):
-        raise forms.ValidationError({
-            "username": "Username already exists!",
-            "email": "Email address already exist!"
-        })
-
     class Meta:
         model = User
         fields = 'username', 'email', 'gender', 'password1', 'password2', 'agent'
@@ -24,5 +18,5 @@ class UserForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super(UserForm, self).__init__(*args, **kwargs)
 
-        for field_name in ['username', 'email', 'gender', 'password1', 'password2', 'agent']:
+        for field_name in ['username', 'email', 'gender', 'agent']:
             self.fields[field_name].help_text = None
