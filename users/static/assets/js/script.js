@@ -42,7 +42,7 @@ window.console = window.console || function(t) {};
 if (document.location.search.match(/type=embed/gi)) {
   window.parent.postMessage("resize", "*");
 }
-console.log('Please activate dark mode, if you want to use it!');
+//console.log('Please activate dark mode, if you want to use it!');
 const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
 
 function switchTheme(e) {

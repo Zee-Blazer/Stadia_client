@@ -45,12 +45,28 @@
 				</li>
 
 				{% if user_profile.is_agent %}
-					<li>
-						<a href="{% url 'user_dashboard:create_event' %}" class="items">
-							<i class="fa fa-plus" aria-hidden="true"></i>
-							<span>Create an Event</span>
+					<li id="headingTwo">
+						<a href="onclick();" class="submenu-items" data-toggle="collapse" data-target="#collapseTwo"
+							aria-expanded="true" aria-controls="collapseTwo">
+							<i class="fas fa-folder-open"></i>
+							<span>Manage Events</span>
+							<i class="fas la-angle-right"></i>
 						</a>
 					</li>
+					<div id="collapseTwo" class="collapse submenu" aria-labelledby="headingTwo" data-parent="#sidebar-items">
+						<ul>
+							<li>
+								<a href="{% url 'user_dashboard:create_event' %}" class="items">
+									Create an Event
+								</a>
+							</li>
+							<li>
+								<a href="{% url 'user_dashboard:created_events' %}" class="items">
+									View Created Events
+								</a>
+							</li>
+						</ul>
+					</div>
 				{% endif %}
 
 			</ul>

@@ -1,0 +1,89 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}Created Events{% endblock %}
+
+{% block inner_style %}
+    <style>
+        button a {
+            color: #fff;
+            text-decoration: none;
+        }
+        button a:hover {
+            color: #fff;
+            text-decoration: none;
+        }
+        .modal-title, .modal-body{
+            color: #000 !important;
+        }
+    </style>
+{% endblock %}
+
+{% block section %}Created Events{% endblock %}
+
+{% block content %}
+    {% if events %}
+        <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Event Name</th>
+                  <th>Attendees</th>
+                  <th>Date</th>
+                  <th>Edit Event</th>
+                  <th>Delete Event</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for event in events %}
+                    <tr>
+                      <td class="text-bold-500">{{ event.name }}</td>
+                      <td>{{ event.attendance }}</td>
+                      <td>{{ event.date.date }} {{ event.date.time }}</td>
+                      <td>
+                          <button class="btn btn-primary">
+                              <a href="{% url 'user_dashboard:edit_event' event.id %}">Edit Event</a>
+                          </button>
+                      </td>
+                      <td>
+                          <button class="btn btn-danger" data-toggle="modal" data-target="#{{ event.slug }}">
+                              Delete Event
+                          </button>
+                      </td>
+                    </tr>
+
+                    <div class="modal fade" id="{{ event.slug }}">
+                      <div class="modal-dialog modal-sm modal-dialog-centered">
+                        <div class="modal-content">
+
+                          <!-- Modal Header -->
+                          <div class="modal-header">
+                            <h4 class="modal-title">Delete Event "{{ event.name }}"</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          </div>
+
+                          <!-- Modal body -->
+                          <div class="modal-body">
+                            Do you really want to delete this event? Once deleted every attendee and ticket concerning this event will be cancelled and refunded. You will also be charged for taking out the event.
+                          </div>
+                          <!-- Of course we are just bluffing now :) -->
+
+                          <!-- Modal footer -->
+                          <div class="modal-footer">
+                            <a class="btn btn-danger" href="{% url 'user_dashboard:delete_event' event.id %}">
+                                Yes! Delete
+                            </a>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                {% endfor %}
+              </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p class="font-weight-bold" align="center">You are yet to create any events.
+            <a href="{% url 'user_dashboard:create_event' %}">Create on now!</a>
+        </p>
+    {% endif %}
+{% endblock %}

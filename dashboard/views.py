@@ -1,11 +1,13 @@
-from django.shortcuts import render, redirect
-from users.models import UserProfile
-from . import models, forms
 from .utilities import *
-from django.contrib import messages
+from . import models, forms
 from django.db.models import Q
 from django.urls import reverse
+from django.contrib import messages
+from users.models import UserProfile
+from django.utils.text import slugify
 from django.contrib.auth.models import User
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, redirect
 
 
 def dashboard(request):
@@ -142,14 +144,28 @@ def create_event(request):
     user_profile = UserProfile.objects.get(user=user)
 
     if request.method == 'POST':
-        form = forms.EventForm(request.post)
+        form = forms.EventForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            cd = form.cleaned_data
+            name, dis_image, capacity, description, price, date = (
+                cd['name'], cd['image'], cd['capacity'],
+                cd['description'], cd['price'], cd['date'],
+            )
+
+            date = DateTimeHandler(date)
+
+            models.Event.objects.create(
+                event_creator=user_profile, name=name, slug=slugify(name), dis_image=dis_image,
+                capacity=capacity, description=description, price=price, date=date.datetime
+            ).save()
 
             message = f"Your event has successfully been created!"
             messages.success(request, message)
 
             return redirect('user_dashboard:dashboard')
+        else:
+            message = f"Your event could not be created! Perhaps you didn't fill the form accurately enough."
+            messages.error(request, message)
     else:
         form = forms.EventForm()
 
@@ -157,9 +173,51 @@ def create_event(request):
         'user': user,
         'user_profile': user_profile,
         'form': form,
+        'value': "Create Event"
     }
 
     return render(request, 'dashboard/files/create_event.html', context)
+
+
+def created_events(request):
+    user = User.objects.get(username=request.user.username)
+    user_profile = UserProfile.objects.get(user=user)
+    events = models.Event.objects.filter(event_creator=user_profile)
+
+    context = {
+        'user': user,
+        'user_profile': user_profile,
+        'events': events,
+    }
+
+    return render(request, 'dashboard/files/created_events.html', context)
+
+
+def edit_event(request, event_id):
+    user = User.objects.get(username=request.user.username)
+    user_profile = UserProfile.objects.get(user=user)
+
+    event = models.Event.objects.get(id=event_id)
+    event_form = forms.EventForm(instance=event)
+
+    context = {
+        'user': user,
+        'user_profile': user_profile,
+        'form': event_form,
+        'value': "Edit Event"
+    }
+
+    return render(request, 'dashboard/files/create_event.html', context)
+
+
+def delete_event(request, event_id):
+    event = models.Event.objects.get(id=event_id)
+    event.delete()
+
+    message = f"Your event has successfully been deleted!"
+    messages.success(request, message)
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
 
 def add_event(request, event_name):
