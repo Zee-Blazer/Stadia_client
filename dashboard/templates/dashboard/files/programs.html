@@ -2,6 +2,19 @@
 
 {% block title %}Programs{% endblock %}
 
+{% block inner_style %}
+    <style>
+        button a {
+            color: #fff;
+            text-decoration: none;
+        }
+        button a:hover {
+            color: #fff;
+            text-decoration: none;
+        }
+    </style>
+{% endblock %}
+
 {% block section %}Programs{% endblock %}
 
 {% block content %}
@@ -32,8 +45,8 @@
             </table>
         </div>
     {% else %}
-        <p class="font-weight-bold" align="center">Your are not currently registered for any event
-            <a href="#">View all events available now</a>
+        <p class="font-weight-bold" align="center">You are not currently registered for any event
+            <a href="{% url 'user_dashboard:all_events' %}">View all events available now</a>
         </p>
     {% endif %}
 {% endblock %}

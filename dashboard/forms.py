@@ -5,10 +5,22 @@ from django.contrib.auth.forms import PasswordChangeForm
 
 
 class EventForm(forms.ModelForm):
+    date = forms.CharField()
+    image = forms.ImageField()
 
     class Meta:
         model = Event
-        fields = 'name', 'dis_image', 'capacity', 'description', 'price', 'date'
+        fields = 'name', 'capacity', 'description', 'price'
+
+    def __init__(self, *args, **kwargs):
+        super(EventForm, self).__init__(*args, **kwargs)
+        self.fields['date'].widget.attrs.update({
+            'class': 'form-control datetimepicker-input',
+            'data-target': '#reservationdatetime'
+        })
+        self.fields['image'].widget.attrs.update({
+            'accept': 'image/*',
+        })
 
 
 class AttendTicketForm(forms.ModelForm):
