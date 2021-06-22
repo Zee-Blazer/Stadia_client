@@ -49,9 +49,3 @@ class UserForm(forms.ModelForm):
 
         for field_name in ['username', 'email']:
             self.fields[field_name].help_text = None
-
-
-class UserPasswordChangeForm(PasswordChangeForm):
-    old_password = forms.PasswordInput()
-    new_password1 = forms.PasswordInput()
-    new_password2 = forms.PasswordInput()

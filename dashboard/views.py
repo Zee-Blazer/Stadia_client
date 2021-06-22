@@ -8,6 +8,8 @@ from django.utils.text import slugify
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
 
 
 def dashboard(request):
@@ -111,24 +113,29 @@ def profile(request):
     user_profile = UserProfile.objects.get(user=user)
 
     if request.method == 'POST':
-        password_form = forms.UserPasswordChangeForm(request.POST)
         form = forms.UserForm(request.POST)
-        if form.is_valid():
+        password_form = PasswordChangeForm(request.user, request.POST)
+
+        if password_form.is_valid():
+            user = password_form.save()
+
+            update_session_auth_hash(request, user)  # Important!
+
+            message = 'Your password was successfully updated!'
+            messages.success(request, message)
+        elif form.is_valid():
             form.save()
 
             message = f"Your profile has successfully been updated!"
             messages.success(request, message)
-
-        if password_form.is_valid():
-            form.save()
-
-            message = f"Your password has successfully been changed!"
-            messages.success(request, message)
+        else:
+            message = "Profile information change failed!"
+            messages.error(request, message)
 
         return redirect('user_dashboard:profile')
     else:
         form = forms.UserForm(instance=user)
-        password_form = forms.UserPasswordChangeForm(user)
+        password_form = PasswordChangeForm(request.user)
 
     context = {
         'user': user,
