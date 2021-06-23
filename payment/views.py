@@ -1,9 +1,9 @@
 import braintree
-from django.shortcuts import render, redirect, get_object_or_404
 from django.conf import settings
-from dashboard.models import Ticket, Event
 from users.models import UserProfile
+from dashboard.models import Ticket, Event
 from django.contrib.auth.models import User
+from django.shortcuts import render, redirect, get_object_or_404
 
 
 # instantiate Braintree payment gateway
@@ -16,6 +16,7 @@ def payment_process(request):
     order_id = request.session.get('order_id')
     order = get_object_or_404(Ticket, id=order_id)
     total_cost = order.get_total_cost()
+
     if request.method == 'POST':
         # retrieve nonce
         nonce = request.POST.get('payment_method_nonce', None)
@@ -34,24 +35,17 @@ def payment_process(request):
             seats = request.session.get('seats')
 
             event = Event.objects.get(id=event_id)
-            ticket = Ticket.objects.get(id=order_id)
+
+            # store the unique transaction id
+            order.braintree_id = result.transaction.id
 
             event.attendance += seats
             event.save()
 
-            ticket.create(
-                event=event,
-                attendee=user_profile,
-                book_seat=seats,
-            ).save()
-
-            # mark the order as paid
-            order.paid = True
-            # store the unique transaction id
-            order.braintree_id = result.transaction.id
-            order.save()
             return redirect('payment:done')
         else:
+            order.delete()
+
             return redirect('payment:canceled')
     else:
         # generate token

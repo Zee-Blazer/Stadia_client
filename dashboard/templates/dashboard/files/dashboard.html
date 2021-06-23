@@ -14,7 +14,7 @@
                         <img class="card-img card-img-top" src="{{ event.dis_image.url }}">
                         <div class="card-body">
                         <h5 class="card-title">{{ event.name }}</h5>
-                        <p class="card-text">{{ event.description }}</p>
+                        <p class="card-text">{{ event.description|truncatechars:150 }}</p>
                         <a href="{% url 'user_dashboard:add_event' event.name %}" class="btn btn-success">Attend Event</a>
                         </div>
                     </div>
